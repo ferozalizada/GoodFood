@@ -1,3 +1,36 @@
-<p>
-  register Modal
-</p>
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Register</h5>
+          <button type="button" class="Cancel" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <input type="text" id="userName">
+            <input type="email" id="emailAddress">
+            <input type="text" id="firstName">
+            <input type="text" id="lastName">
+            <select name="type" id="type">
+              <option value="blog">Blog</option>
+              <option value="online">Online</option>
+              <option value="food critique">Food Critique</option>
+            </select>
+  
+            <input type="password" id="password">
+            <input type="password" id="passwordRetype">
+
+          </form>
+
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Log In</button>
+        </div>
+      </div>
+    </div>
+  </div>

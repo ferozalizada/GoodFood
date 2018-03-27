@@ -12,13 +12,24 @@
         <a class="nav-link" href="#">Popular In Your Area<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Favourites</a>
+        <a class="nav-link" href="#" (click)= "getData($event)">Favourites</a>
       </li>
      
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</button>
-      <button class="btn btn-warning my-2 my-sm-0" type="submit">Register</button>
+        
+      <button class="btn btn-outline-success my-2 my-sm-0"
+      routerLink= "/login"
+
+      data-toggle="modal" data-target="#loginModal" type="button">
+        Log In
+      </button>
+      <button class="btn btn-warning my-2 my-sm-0" 
+      routerLink= "/register"
+      data-toggle="modal" data-target="#registerModal" type="button">
+        Register
+      </button>
+     
       <!--li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown

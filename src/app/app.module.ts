@@ -12,6 +12,7 @@ import { MenuComponent } from './main-components/menu/menu.component';
 
 //Imports the app router to navigate through pages
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

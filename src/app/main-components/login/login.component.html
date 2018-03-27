@@ -1,1 +1,31 @@
-<p>login Modal</p>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Log In</h5>
+          <button type="button" class="Cancel" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="container">
+            <div class="row">
+              <div class="form-group col-4 ">
+                <label for="exampleInputEmail1">User ID</label>
+                <label for="exampleInputPassword1">Password</label>
+              </div>
+              <div class="form-group col-6">  
+                  <input type="ID" class="form-control" id="exampleInputEmail1" placeholder="User ID">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+            </div>
+            <a class="small form-text text-muted text-center row" href="#">Forgot Password?</a>            
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Log In</button>
+        </div>
+      </div>
+    </div>
+  </div>

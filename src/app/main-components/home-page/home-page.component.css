@@ -1,0 +1,11 @@
+/* .bg{
+    background: url('https://source.unsplash.com/random') no-repeat center center;
+} */
+.jumbotron{
+    background-image: url("https://source.unsplash.com/featured/?food,healthy");
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    opacity: 60%;
+}
