@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-12">
                   <form type="form" #formData="ngForm"  (ngSubmit)="postUserData(formData)"
-                  [formGroup]= "registrationForm">
+                  >
 
                     <h3 class="small text-center font-weight-bold">Please Sign up to rate your favourite restaurants</h3>
                     <hr class="colorgraph">
@@ -21,63 +21,95 @@
                       <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                           
-                          <input [(ngModel)]= "firstName" 
-                          formControlName="firstName"
+                          <input [(ngModel)]= "user.firstName" 
+                          name="firstName"
                           type="text"  
-                          name="firstName"  class="form-control input-lg" 
+                          #firstName="ngModel"
+                          required
+                          class="form-control input-lg" 
                           placeholder="First Name" tabindex="1">
+                          <div class="small text-center text-danger" [hidden]="firstName.valid || firstName.pristine">
+                            First Name is required <sup>*</sup>
+                          </div>
 
                         </div>
                       </div>
                       <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                           
-                          <input [(ngModel)]= "lastName" 
-                          formControlName="lastName"
+                          <input [(ngModel)]= "user.lastName" 
+                          name="lastName"
                           type="text" 
-                          name="lastName"  class="form-control input-lg" 
+                          #lastName="ngModel"
+                          required
+                          class="form-control input-lg" 
                           placeholder="Last Name" tabindex="2">
-
+                          <div class=" small text-center text-danger"[hidden]="lastName.valid || lastName.pristine">
+                              
+                            Last Name is required <sup>*</sup>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       
-                      <input [(ngModel)]= "userName" 
-                      formControlName="userName"
+                      <input [(ngModel)]= "user.userName" 
+                      name="userName"
                       type="text"  
-                      name="userName" class="form-control input-lg" 
+                      #userName="ngModel"
+                      required
+                      class="form-control input-lg" 
                       placeholder="User Name" tabindex="3">
+                      <div class=" small text-center text-danger" [hidden]="userName.valid || userName.pristine">
+                            UserName is required <sup>*</sup>
+
+                      </div>
 
                     </div>
                     <div class="form-group">
                       
-                      <input [(ngModel)]= "email" 
-                      formControlName="email"
-                      type="email" name="email" class="form-control input-lg" 
+                      <input [(ngModel)]= "user.email" 
+                      name="email"
+                      type="email" 
+                      #email="ngModel"
+                      class="form-control input-lg" 
+                      required
+                      email
                       placeholder="Email Address" tabindex="4"> 
+                      <div class=" small text-center text-danger" [hidden]="email.valid || email.pristine">
+                          Email is required <sup>*</sup>
+                      </div>
                       
 
                     </div>
                     <div class="form-group">
-                        <select [(ngModel)]= "selectedValue" 
-                        formControlName="type"
-                        class="form-control selectpicker" name="type" 
+                        <select [(ngModel)]= "user.selectedValue" 
+                        name="selectedValue"
+                        class="form-control selectpicker" 
+                        #selectedValue="ngModel"
+                        required
                         data-ng-options="t.name for t in vm.types" data-ng-model="vm.object.type">
 
                             <option value="" placeholder="Please" selected disabled>Please Select Rater Type</option>
                             <option>Blog</option>
                             
                           </select>
+                          <div class=" small alert alert-warning" [hidden]="selectedValue.valid || selectedValue.pristine">
+                              Type is required <sup>*</sup>
+                          </div>
                       </div>
-                    <div class="row" formGroupName="passwords">
+                      <!-- {{formData.email}} -->
+                    <div class="row">
                       <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                           
-                          <input [(ngModel)]= "password" 
-                          formControlName="pwd1"
+                          <input [(ngModel)]= "user.password" 
+                          name="password"
                           type="password" 
-                          name="password" class="form-control input-lg" 
+                          #password="ngModel"
+                          required
+                          minlength="6"
+                          class="form-control input-lg" 
                           placeholder="Password" tabindex="5">
 
                         </div>
@@ -85,15 +117,25 @@
                       <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
                           
-                          <input [(ngModel)]= "passwordConfirmation" 
-                          formControlName="pwd2"
+                          <input [(ngModel)]= "user.passwordConfirmation" 
+                          name="passwordConfirmation"
                           type="password" 
-                          name="passwordConfirmation" class="form-control input-lg" 
+                          #passwordConfirmation="ngModel"
+                          class="form-control input-lg" 
+                          required
+                          minlength="6"
                           placeholder="Confirm Password" tabindex="6">
 
                         </div>
                       </div>
                     </div>
+                      <div class=" text-center small alert alert-warning"  *ngIf="isMatch()">
+                          <!-- <div class=" text-center small alert alert-warning"  *ngIf="((password.invalid || passwordConfirmation.invalid))">
+                              Passwords must be more than 6 Characters <sup>*</sup>
+                          </div> -->
+                          Passwords must be 6 characters and  match <sup>*</sup>
+                      </div>
+                      
                     <hr class="colorgraph">
                     <div class="row">
                       <div class="col-xs-12 col-md-6" data-dismiss="modal">
@@ -101,20 +143,13 @@
                       </div>
                       <div class="col-xs-12 col-md-6">
                         
-                        <button type="submit" [disabled] = "!registrationForm.valid"
+                        <button type="submit" 
+                        [disabled]="!formData.valid"
                         class="btn btn-success btn-block btn-lg"
                         >Sign Up</button>
                       </div>
                     </div>
-                    <div class="row text-center ">
-                      <div class="col-12" [hidden]="registrationForm.valid">
-                        <small>
-                          <strong class="label label-primary alert text-danger">
-                            All the Fields are required <sup>*</sup>
-                          </strong>
-                        </small>
-                      </div>
-                    </div>
+                    
                   </form>
               </div>
             </div>

@@ -11,39 +11,62 @@ import { FormControl, FormGroup, EmailValidator } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   //creates a new object of type user
-  private user: User;
+  // private user: User;
   private arg: boolean;
   private registrationForm: FormGroup;
+  
+  submitted = false;
+
+  user = new User(
+    "", 
+    "",
+    "",
+    "",
+    0,
+    "",
+    ""
+  );
+
+
+  
+  onSubmit(){
+    this.submitted = true;
+  }
   // private passwordGroup: FormGroupName;
   // email = new FormControl('name@email.com', Validators.required);
+  isMatch(){
+    return !(this.user.password == this.user.passwordConfirmation)
+  }
 
-
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    // private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
-    this.registrationForm = this.formBuilder.group(
-      {
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        email: ['', [Validators.required, EmailValidator]],
-        type: ['', Validators.required],
-        userName: ['', Validators.required],
+    this.isMatch();
+    // this.registrationForm = this.formBuilder.group(
+    //   {
+    //     firstName: ['', Validators.required],
+    //     lastName: ['', Validators.required],
+    //     email: ['', [Validators.required, EmailValidator]],
+    //     type: ['', Validators.required],
+    //     userName: ['', Validators.required],
         
-        passwords: this.formBuilder.group(
-          {
-          pwd1: ['', [Validators.required, Validators.minLength(6)]],
-          pwd2: ['', [Validators.required, Validators.minLength(6)]]
+    //     passwords: this.formBuilder.group(
+    //       {
+    //       pwd1: ['', [Validators.required, Validators.minLength(6)]],
+    //       pwd2: ['', [Validators.required, Validators.minLength(6)]]
 
-          }
-        )
-      }
-    )
+    //       }
+    //     )
+    //   }
+    // )
   }
   // checkPassword(){}
 
   postUserData(formData: NgForm){
     console.log(JSON.stringify(formData.value));
-    console.log(formData.value , "this is the form value");
+    console.log(formData.value , "this is the form value obejct representation");
   }
 
 }
