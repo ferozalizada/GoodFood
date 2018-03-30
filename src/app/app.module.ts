@@ -1,6 +1,7 @@
 // IMports the modules needed to run the routing
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Imports all the componenets that are to be injected
 import { AppComponent } from './app.component';
@@ -14,6 +15,11 @@ import { MenuComponent } from './main-components/menu/menu.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HttpModule } from '@angular/http';
 
+//Imports the Services that will fetch and push data
+import { FetchDataService } from './services/fetch-data.service';
+import { PostDataService } from './services/post-data.service';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -25,11 +31,17 @@ import { HttpModule } from '@angular/http';
     MenuComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    FetchDataService,
+    PostDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

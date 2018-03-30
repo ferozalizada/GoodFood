@@ -3,9 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../main-components/login/login.component';
 import { RegisterComponent } from '../main-components/register/register.component';
+import { HomePageComponent } from '../main-components/home-page/home-page.component';
 // import {}
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomePageComponent
+  },
   {
       path: 'login',
       component: LoginComponent

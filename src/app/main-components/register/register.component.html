@@ -8,29 +8,153 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="">
-            <input type="text" id="userName">
-            <input type="email" id="emailAddress">
-            <input type="text" id="firstName">
-            <input type="text" id="lastName">
-            <select name="type" id="type">
-              <option value="blog">Blog</option>
-              <option value="online">Online</option>
-              <option value="food critique">Food Critique</option>
-            </select>
-  
-            <input type="password" id="password">
-            <input type="password" id="passwordRetype">
+          <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-12">
+                  <form type="form" #formData="ngForm"  (ngSubmit)="postUserData(formData)"
+                  [formGroup]= "registrationForm">
 
-          </form>
+                    <h3 class="small text-center font-weight-bold">Please Sign up to rate your favourite restaurants</h3>
+                    <hr class="colorgraph">
+                    
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          
+                          <input [(ngModel)]= "firstName" 
+                          formControlName="firstName"
+                          type="text"  
+                          name="firstName"  class="form-control input-lg" 
+                          placeholder="First Name" tabindex="1">
 
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          
+                          <input [(ngModel)]= "lastName" 
+                          formControlName="lastName"
+                          type="text" 
+                          name="lastName"  class="form-control input-lg" 
+                          placeholder="Last Name" tabindex="2">
 
-          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      
+                      <input [(ngModel)]= "userName" 
+                      formControlName="userName"
+                      type="text"  
+                      name="userName" class="form-control input-lg" 
+                      placeholder="User Name" tabindex="3">
+
+                    </div>
+                    <div class="form-group">
+                      
+                      <input [(ngModel)]= "email" 
+                      formControlName="email"
+                      type="email" name="email" class="form-control input-lg" 
+                      placeholder="Email Address" tabindex="4"> 
+                      
+
+                    </div>
+                    <div class="form-group">
+                        <select [(ngModel)]= "selectedValue" 
+                        formControlName="type"
+                        class="form-control selectpicker" name="type" 
+                        data-ng-options="t.name for t in vm.types" data-ng-model="vm.object.type">
+
+                            <option value="" placeholder="Please" selected disabled>Please Select Rater Type</option>
+                            <option>Blog</option>
+                            
+                          </select>
+                      </div>
+                    <div class="row" formGroupName="passwords">
+                      <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          
+                          <input [(ngModel)]= "password" 
+                          formControlName="pwd1"
+                          type="password" 
+                          name="password" class="form-control input-lg" 
+                          placeholder="Password" tabindex="5">
+
+                        </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                          
+                          <input [(ngModel)]= "passwordConfirmation" 
+                          formControlName="pwd2"
+                          type="password" 
+                          name="passwordConfirmation" class="form-control input-lg" 
+                          placeholder="Confirm Password" tabindex="6">
+
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="colorgraph">
+                    <div class="row">
+                      <div class="col-xs-12 col-md-6" data-dismiss="modal">
+                        <input value="Cancel" class="btn btn-danger btn-block btn-lg" >
+                      </div>
+                      <div class="col-xs-12 col-md-6">
+                        
+                        <button type="submit" [disabled] = "!registrationForm.valid"
+                        class="btn btn-success btn-block btn-lg"
+                        >Sign Up</button>
+                      </div>
+                    </div>
+                    <div class="row text-center ">
+                      <div class="col-12" [hidden]="registrationForm.valid">
+                        <small>
+                          <strong class="label label-primary alert text-danger">
+                            All the Fields are required <sup>*</sup>
+                          </strong>
+                        </small>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Log In</button>
+          <div class="container">
+            
+            <div class="row">
+              <div class="col-xs-8 col-sm-9 col-md-12 text-center font-weigth-small small">
+                  By clicking <strong class="label label-primary">
+                  Register</strong>, you agree to our 
+                  <a href="#" data-toggle="modal" data-target="#terms">
+                  Terms and Conditions</a>
+               </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="terms" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" >Terms and Condition</h5>
+                  <button type="button" class="Cancel" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              <div class="modal-body jumbotron">
+                <div class="jumbotron bg-faded">
+                  <p>
+                    There are no Terms and Warranty regarding this service.
+                  </p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
