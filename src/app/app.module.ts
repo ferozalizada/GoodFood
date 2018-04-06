@@ -19,6 +19,9 @@ import { HttpModule } from '@angular/http';
 import { FetchDataService } from './services/fetch-data.service';
 import { PostDataService } from './services/post-data.service';
 import { CommonModule } from '@angular/common';
+// import { HttpClient } from 'selenium-webdriver/http';
+import { HttpClientModule } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -35,6 +38,8 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
+    // HttpClient,
+    HttpClientModule,
     ReactiveFormsModule,
     CommonModule
   ],

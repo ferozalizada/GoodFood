@@ -83,10 +83,10 @@
 
                     </div>
                     <div class="form-group">
-                        <select [(ngModel)]= "user.selectedValue" 
-                        name="selectedValue"
+                        <select [(ngModel)]= "user.type" 
+                        name="type"
                         class="form-control selectpicker" 
-                        #selectedValue="ngModel"
+                        #type="ngModel"
                         required
                         data-ng-options="t.name for t in vm.types" data-ng-model="vm.object.type">
 
@@ -94,7 +94,7 @@
                             <option>Blog</option>
                             
                           </select>
-                          <div class=" small alert alert-warning" [hidden]="selectedValue.valid || selectedValue.pristine">
+                          <div class=" small alert alert-warning" [hidden]="type.valid || type.pristine">
                               Type is required <sup>*</sup>
                           </div>
                       </div>
@@ -143,7 +143,8 @@
                       </div>
                       <div class="col-xs-12 col-md-6">
                         
-                        <button type="submit" 
+                        <button type="submit"
+                        name= "submit" 
                         [disabled]="!formData.valid"
                         class="btn btn-success btn-block btn-lg"
                         >Sign Up</button>

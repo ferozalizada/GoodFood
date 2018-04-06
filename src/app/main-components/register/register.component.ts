@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, Validators, FormBuilder, FormGroupName } from '@angular/forms';
 import { User } from '../../classes/user';
 import { FormControl, FormGroup, EmailValidator } from '@angular/forms';
-
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {PostDataService } from '../../services/post-data.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -28,10 +28,6 @@ export class RegisterComponent implements OnInit {
   );
 
 
-  
-  onSubmit(){
-    this.submitted = true;
-  }
   // private passwordGroup: FormGroupName;
   // email = new FormControl('name@email.com', Validators.required);
   isMatch(){
@@ -39,34 +35,25 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(
+    private httpClient: HttpClient,
+    private postService: PostDataService
+    // private meesageService: MessageSerive
     // private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.isMatch();
-    // this.registrationForm = this.formBuilder.group(
-    //   {
-    //     firstName: ['', Validators.required],
-    //     lastName: ['', Validators.required],
-    //     email: ['', [Validators.required, EmailValidator]],
-    //     type: ['', Validators.required],
-    //     userName: ['', Validators.required],
-        
-    //     passwords: this.formBuilder.group(
-    //       {
-    //       pwd1: ['', [Validators.required, Validators.minLength(6)]],
-    //       pwd2: ['', [Validators.required, Validators.minLength(6)]]
-
-    //       }
-    //     )
-    //   }
-    // )
+    
   }
-  // checkPassword(){}
+  addUser(user: any){
+    this.postService.postRegistrationData(user)
+    .subscribe((user)=> console.log('Response: added to the Database!'))
+    // this.formData.reset();
 
+  }
+  // makes the https request
   postUserData(formData: NgForm){
-    console.log(JSON.stringify(formData.value));
-    console.log(formData.value , "this is the form value obejct representation");
+    this.addUser(JSON.stringify(formData.value));
+    formData.reset();
   }
 
 }

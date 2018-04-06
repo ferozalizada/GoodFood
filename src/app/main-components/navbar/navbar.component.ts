@@ -15,8 +15,9 @@ export class NavbarComponent implements OnInit {
   // private url: string = 'http://localhost:8888/BackEndDB/response.php';
   dataReturned = [];
   
-  constructor( private fetchData: FetchDataService,
-  private postData: PostDataService ) { 
+  constructor( 
+    private fetchData: FetchDataService,
+    private postData: PostDataService ) { 
     this.getData();
     
     // this.printDataArray();
@@ -24,8 +25,8 @@ export class NavbarComponent implements OnInit {
   getData (){
     this.fetchData.fetchData()
     .subscribe(data => {
-      this.dataReturned = data;
-      console.log(data, "Received data! Checkpoint");
+      // this.dataReturned = data;
+      console.log(data, "Received data! Checkpoint httpClient");
       // callback;
     });
   }
