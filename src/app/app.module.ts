@@ -21,6 +21,8 @@ import { PostDataService } from './services/post-data.service';
 import { CommonModule } from '@angular/common';
 // import { HttpClient } from 'selenium-webdriver/http';
 import { HttpClientModule } from '@angular/common/http';
+import { MenuitemComponent } from './main-components/menuitem/menuitem.component';
+import { RestaurantComponent } from './main-components/restaurant/restaurant.component';
 // import { HttpClient } from '@angular/common/http';
 
 
@@ -31,7 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     HomePageComponent,
-    MenuComponent
+    MenuComponent,
+    MenuitemComponent,
+    RestaurantComponent
   ],
   imports: [
     FormsModule,

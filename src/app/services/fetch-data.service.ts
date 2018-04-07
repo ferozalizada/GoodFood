@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable'
 export class FetchDataService {
   
   private url: string = 'http://localhost:8888/BackEndDB/response.php';
+  private urlGetRestaurant: string = 'http://localhost:8888/BackEndDB/response.php';
   
   constructor(private httpClient: HttpClient) { 
     console.log("The Services are running...");
@@ -23,6 +24,12 @@ export class FetchDataService {
     .do((res: Response) => res)
     .map((res: Response) => res)
     .catch(this.catchErrors);
+  }
+  fetchRestaurant(){
+    return this.httpClient.get(this.urlGetRestaurant)
+    .do((res: Response) => res)
+    .map((res: Response) => res)
+    .catch(this.catchErrors)
   }
   
 

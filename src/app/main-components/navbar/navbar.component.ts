@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   constructor( 
     private fetchData: FetchDataService,
     private postData: PostDataService ) { 
-    this.getData();
+    // this.getData();
     
     // this.printDataArray();
   }
