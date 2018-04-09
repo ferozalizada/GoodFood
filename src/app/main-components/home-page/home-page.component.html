@@ -1,82 +1,78 @@
+<app-navbar></app-navbar>
 <div class="container">
   <div class="row">
-    <router-outlet></router-outlet>
-    <div class="col-12 jumbotron" >
-      <h1>
-        GoodFood!
-      </h1>  
-      <p>
-        This is a template for a simple marketing or informational website. 
-        It includes a large callout called a jumbotron and three supporting pieces of content. 
-        Use it as a starting point to create something more unique.
-      </p>        
-     
-      <div class="input-group mb-3 justify-content-md-center align-self-center">
-          <input type="text" class="form-control" placeholder="Search for Restaurant or Cuisin" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">Search</button>
+    <!-- <router-outlet></router-outlet> -->
+    <div class="col-12 jumbotron img" >
+      <form  (ngSubmit)="searchDatabase()" >
+          <h1 class="pull-right">
+              GoodFood!
+          </h1>  
+          <p>
+            Search all of our best Restaurant to find your choice of Food!
+          </p>        
+          
+          <div class="form-group input-group mb-3 justify-content-md-center align-self-center">
+              <input  type="text" class="form-control"
+              name="searchbox"
+              [(ngModel)]="searchInput"
+              placeholder="Search for Restaurant or Cuisin"
+              aria-label="Search" >
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
           </div>
-      </div>
+      </form>
+     
       
     </div>
   </div>
-  <div class="row jumbotron">
+  <div class="row jumbotron align-items-center ">
       <h1 class="text text-center">
           Top Reviewed Food of the Week!
       </h1>
-      <p>
-        This restaurant serves the best food in the region. Lorem ipsum dolor, 
-        sit amet consectetur adipisicing elit. Exercitationem, dolore. 
-        Adipisci veniam blanditiis aliquid nisi est officia eligendi, 
-        assumenda excepturi veritatis optio eius aspernatur fuga soluta labore voluptatibus sit doloremque!
-      </p>
-      <button class="btn btn-primary center-block" >
-          Show me the Menu!
-      </button>
+      <div class="container ">
+        <div class="row">
+            <div class="col-3 card-small" *ngFor="let food of topRatedFood">
+              <div class="row" (click)="onSelect(food)">
+                  <div class="row align-items-center color-bg rounded" (click)="alertMe()">
+                
+                      <img class="col-12 col-md-5 rounded " width="70px" height="90px" alt="Grandfather with child" 
+                      src="https://source.unsplash.com/featured/?{{food.type}}" sizes="(max-width: 650px) 100vw, 650px">
+                      
+                      <div class="col- col-md-7">
+
+                        <div class="card-body">
+                          <h6 class="small font-weight-bold">{{food.type}}</h6>
+                          <!-- <hr class="half-rule"/> -->
+                          <p class="small">Total Reviews: {{food.total_reviews}}</p>
+                          <!-- <a class="text">Contact Us</a> -->
+          
+                        </div>
+                      </div>
+                  </div>
+              </div>
+                
+            </div>
+        </div>
+        
+          
+      </div>
+      
+      
   </div>
   <div class="row">
-    <div class="col-4">
-      <h1>
-        Restaurant 1
-      </h1>
-      <p>
-        This restaurant serves the best food in the region. Lorem ipsum dolor, 
-        sit amet consectetur adipisicing elit. Exercitationem, dolore. 
-        Adipisci veniam blanditiis aliquid nisi est officia eligendi, 
-        assumenda excepturi veritatis optio eius aspernatur fuga soluta labore voluptatibus sit doloremque!
-      </p>
-      <button class="btn btn-primary center-block">
-          Show me!
-        </button>
+    <div class="col-4 " *ngFor="let restaurant of restaurants">
+        <div class="card" (click)="onSelect(restaurant)">
+            <img class="card-img-top" src="https://source.unsplash.com/featured/?{{restaurant.name}},food" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{restaurant.name}}</h5>
+              <p class="card-text">
+                {{restaurant.type}}
+              </p>
+              <p class="card-text"><small class="text-muted">{{restaurant.url}}</small></p>
+            </div>
+          </div>
     </div>
-    <div class="col-4">
-        <h1>
-          Restaurant 2
-        </h1>
-        <p>
-          This restaurant serves the best food in the region. Lorem ipsum dolor, 
-          sit amet consectetur adipisicing elit. Exercitationem, dolore. Adipisci 
-          veniam blanditiis aliquid nisi est officia eligendi, assumenda excepturi 
-          veritatis optio eius aspernatur fuga soluta labore voluptatibus sit doloremque!
-        </p>
-        <button class="btn btn-primary">
-          Show me!
-        </button>
-      </div>
-      <div class="col-4">
-          <h1>
-            Restaurant 3
-          </h1>
-          <p>
-            This restaurant serves the best food in the region. Lorem ipsum dolor, 
-            sit amet consectetur adipisicing elit. Exercitationem, dolore. 
-            Adipisci veniam blanditiis aliquid nisi est officia eligendi, 
-            assumenda excepturi veritatis optio eius aspernatur fuga soluta labore voluptatibus sit doloremque!
-          </p>
-          <button class="btn btn-primary text-center">
-              Show me!
-            </button>
-        </div>
 
   </div>
 </div>

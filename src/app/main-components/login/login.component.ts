@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormControl, FormGroup, Validator, FormGroupName, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { PostDataService } from '../../services/post-data.service';
+import { PHPResponse } from '../../types';
 
 @Component({
   selector: 'app-login',
@@ -10,26 +11,39 @@ import { PostDataService } from '../../services/post-data.service';
 })
 export class LoginComponent implements OnInit {
   private loginForm: FormGroup;
+
   constructor(
     private formbuilder: FormBuilder, 
     private httpClient: HttpClient,
-    private postUserData: PostDataService) { }
+    private postUserData: PostDataService
+  ) { }
 
   ngOnInit() {
     this.checkValidation();
   }
 
-  checkValidation(){
+  checkValidation() {
     this.loginForm = this.formbuilder.group({
       userName: ['', Validators.required],
       password:['', [Validators.required, Validators.minLength(6)]]
     })
   }
-  authenticateUser(user: any){
-    console.log(user.value)
+  currentUser = {
+    name:""
+  };
+  authenticateUser(user: NgForm) {
     this.postUserData.loginUser(user.value)
-      .subscribe((user) => console.log("Loggin in"))
+      .subscribe((res: PHPResponse) => {
+        if(res.status === 'success'){
+          alert('Welcome '+ res.data+ '! You are now logged in');
+          this.currentUser.name = res.data;
+          // change the route
+        } else {
+          //route adn alert
+          alert("No such User");
+        }
+
+      })
     this.loginForm.reset();
   }
-
 }

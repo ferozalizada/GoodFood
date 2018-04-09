@@ -1,11 +1,46 @@
 /* .bg{
     background: url('https://source.unsplash.com/random') no-repeat center center;
 } */
-.jumbotron{
-    /* background-image: url("https://source.unsplash.com/featured/?food,healthy"); */
-    background-position: 0% 25%;
+body{
+ font-family: sans-serif;
+}
+.img{
+    background-image: url("https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=74ac7c1aa35dc36f50cc1ac7517c70a7&auto=format&fit=crop&w=1050&q=80");
+    background-position: 10%, 0%,10% 25%;
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
-    opacity: 0.5;
+    opacity: 0.9;
 }
+
+.color-bg {
+    background: rgb(255, 255, 255);
+}
+
+.color-bg{
+    padding: 0px;
+    margin-left: 0%;
+}
+img {
+    padding-left: 0px;
+}
+
+.card-small{
+    margin: 10px;
+    margin-right: 30px;
+}
+
+.card-body > *{
+    height: 10px;;
+}
+.half-rule { 
+    margin-left: 0;
+    text-align: left;
+    width: 50%;
+    height: 0%;
+ }
+
+ /* .footer {
+    background: #ffffff;
+    padding-top: 100px;
+} */
