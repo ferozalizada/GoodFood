@@ -1,38 +1,44 @@
 <app-navbar>
 
 </app-navbar>
-<div class="card" *ngFor="let x of foodmenu">
-    <img class="card-img-top" src="http://www.glowbalgroup.com/img/cst-img/pdr2/img1.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Restaurant</h5>
-      <p class="card-text">
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-3"></div>
+        <div class="col-6 card" *ngFor="let x of foodmenu">
+            <img class="card-img-top" src="http://www.glowbalgroup.com/img/cst-img/pdr2/img1.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{x.name}}</h5>
+              <div class="container">
+              
+                  <span class="row">
         
-        <span class="row">
-
-          {{x.name}}
-        </span>  
-          <span class="row">
-
-            {{x.picture}}
-          </span>
-          <span class="row">
-
-            {{x.restaurantid}}
-          </span>
-          <span class="row">
-
-            {{x.street_address}}
-          </span>
-          <span class="row">
-
-            {{x.type}}
-          </span>
-          <span class="row">
-
-            {{x.url}}
-          </span>
-          
-      </p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    {{x.picture}}
+                  </span>
+                  <span class="row">
+        
+                    {{x.restaurantid}}
+                  </span>
+                  <span class="row">
+        
+                    {{x.street_address}}
+                  </span>
+                  <span class="row">
+        
+                    {{x.type}}
+                  </span>
+                  <span class="row">
+        
+                    {{x.url}}
+                  </span>
+              </div>
+              
+                  
+              
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="col-3"></div>
     </div>
   </div>
+</div>

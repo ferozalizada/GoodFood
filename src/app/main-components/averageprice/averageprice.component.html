@@ -1,0 +1,90 @@
+<app-navbar>
+  
+  </app-navbar>
+  <div class="container">
+    <div class="row">
+        <div class="card col-4"  routerLink= "/averageprice" *ngFor="let special of averageItemPrice">
+          <img class="card-img-top" src="http://www.maximesrestaurant.ca/wp-content/uploads/2016/02/Maxime4974.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title text-center">{{special.name}}</h2>
+            <p class="card-text container bold">
+                
+                  
+              <span class="row">
+
+                Average Price:  {{special.average_price}}
+              </span>
+                  
+                  <span class="row">
+
+                    Category: {{special.category}}
+                  </span>
+                  
+                  <span class="row">
+
+                    Type: {{special.type}}
+                  </span>
+                  
+    
+              
+            </p>
+            <p class="card-text"><small class="text-muted"><span class=" footer row small">
+              </span>
+            </small></p>
+    
+          </div>
+  
+        </div>
+    </div>
+      
+      
+  </div>
+  
+  
+  <!-- modal -->
+  
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <div class="card container" *ngFor="let rater of frequentRater">
+              <span class="row">
+  
+                Rater's Name: {{rater.name}}
+              </span>
+              <span class="row">
+  
+                Rater's Comments: {{rater.comments}}
+              </span>
+              <span class="row">
+  
+                Frequent Rated Item's Price: {{rater.price}}
+              </span>
+              <span class="row">
+  
+                Rater's Reputation: {{rater.reputation}}
+              </span>
+            </div>
+  
+  
+  
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
