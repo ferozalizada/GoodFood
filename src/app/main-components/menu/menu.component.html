@@ -1,8 +1,30 @@
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+<app-navbar>
+
+</app-navbar>
+<div class="container padd">
+  <div class="row">
+
+
+      <div class="col-4" style="width: 18rem;" *ngFor="let item of menu">
+          <img class="card-img-top" src="https://source.unsplash.com/featured/?food" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text bold">
+              Description: {{item.description}}
+            </p>
+            <h6 class="row">
+              Category: {{item.category}}
+            </h6>
+            <h6 class="row">
+              Price: {{item.price}}
+            </h6>
+            <h6 class="row">
+              Type: {{item.type}}
+            </h6>
+            <a href="#" class="btn btn-primary">Home</a>
+          </div>
+        </div>
+  
+
   </div>
+</div>

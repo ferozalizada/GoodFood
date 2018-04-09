@@ -4,6 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../main-components/login/login.component';
 import { RegisterComponent } from '../main-components/register/register.component';
 import { HomePageComponent } from '../main-components/home-page/home-page.component';
+import { RestaurantComponent } from '../main-components/restaurant/restaurant.component';
+
+import { RatersComponent } from '../main-components/raters/raters.component';
+import { MenuComponent } from '../main-components/menu/menu.component';
+import { MenuitemComponent } from '../main-components/menuitem/menuitem.component';
 // import {}
 
 const routes: Routes = [
@@ -18,6 +23,21 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'restaurant',
+    component: RestaurantComponent
+  },
+  { path:'raters',
+  component: RatersComponent
+  },
+  {
+    path: 'menu',
+    component: MenuComponent
+  },
+  {
+    path: 'foods',
+    component: MenuitemComponent
   }
 ];
 

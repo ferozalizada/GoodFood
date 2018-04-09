@@ -30,9 +30,9 @@ img {
     margin-right: 30px;
 }
 
-.card-body > *{
-    height: 10px;;
-}
+/* .card-body > *{
+    height: 10px;; /
+} */
 .half-rule { 
     margin-left: 0;
     text-align: left;

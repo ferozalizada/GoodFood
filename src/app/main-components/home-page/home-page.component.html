@@ -33,8 +33,8 @@
       <div class="container ">
         <div class="row">
             <div class="col-3 card-small" *ngFor="let food of topRatedFood">
-              <div class="row" (click)="onSelect(food)">
-                  <div class="row align-items-center color-bg rounded" (click)="alertMe()">
+              <div class="row" (click)="onSelect(food)" routerLink="/foods">
+                  <div class="row align-items-center color-bg rounded" (click)="alertMe(food)">
                 
                       <img class="col-12 col-md-5 rounded " width="70px" height="90px" alt="Grandfather with child" 
                       src="https://source.unsplash.com/featured/?{{food.type}}" sizes="(max-width: 650px) 100vw, 650px">
@@ -60,10 +60,10 @@
       
       
   </div>
-  <div class="row">
-    <div class="col-4 " *ngFor="let restaurant of restaurants">
-        <div class="card" (click)="onSelect(restaurant)">
-            <img class="card-img-top" src="https://source.unsplash.com/featured/?{{restaurant.name}},food" alt="Card image cap">
+  <div class="row" >
+    <div class="col-4 " *ngFor="let restaurant of restaurants" >
+        <div class="card"   data-toggle="modal" data-target="#restaurantModal">
+            <img class="card-img-top" (click)="onSelectRestaurant(restaurant)" src="https://source.unsplash.com/featured/?{{restaurant.name}},food" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{restaurant.name}}</h5>
               <p class="card-text">
@@ -71,8 +71,21 @@
               </p>
               <p class="card-text"><small class="text-muted">{{restaurant.url}}</small></p>
             </div>
+            <button class="btn btn-primary" routerLink="/menu" (click)="select(restaurant)">
+              Show Menu!
+            </button>
           </div>
     </div>
 
   </div>
 </div>
+
+
+<!-- 
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#restaurantModal">
+    
+  </button> -->
+  
+  <!-- Modal -->
+  

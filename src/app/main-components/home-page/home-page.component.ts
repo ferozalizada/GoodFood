@@ -4,6 +4,8 @@ import { Apicalls } from '../../classes/apicalls';
 import { PostDataService } from '../../services/post-data.service';
 import { Restaurant } from '../../classes/restaurant';
 import { NgForm } from '@angular/forms';
+import {Router} from "@angular/router";
+import { DatapointService } from '../../services/datapoint.service';
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +16,7 @@ export class HomePageComponent implements OnInit {
   // restaurants: = [];
   topRatedFood:any;
   x:Apicalls;
-  restaurants : Restaurant[] = [];
+  restaurants : any = [];
   searchQueryResult : any = [];
   // method = new Apicalls('getRestaurantsById', '1');
   topRated = new Apicalls('getTypePopularity', 'Asian');
@@ -26,6 +28,8 @@ export class HomePageComponent implements OnInit {
   selectedFood:any;
   selectedRestaurant:any;
   constructor(
+    private datapointService: DatapointService,
+    private router: Router,
     private fetchData: FetchDataService,
     private postData: PostDataService
   ) { }
@@ -52,21 +56,18 @@ export class HomePageComponent implements OnInit {
       // this.restaurants = data;
     })
   }
-  alertMe(){
-    alert("I am clicked");
-    console.warn("I am clicked bitch");
-    // this.selected = 
+  alertMe(food: any){
+    console.warn("type clicked", food);
+    this.datapointService.setFoodType(food);
   }
   searchDatabase(){
-    console.warn(this.searchInput)
-    
+    // console.warn(this.searchInput)
     this.searchMethodbyID.setMethod("getRestaurantLocationByID");
     this.searchMethodbyID.setParameter(this.searchInput);
-    
     this.postData.fetchAPIData(this.searchMethodbyID).subscribe( data => {
-      console.warn("running search Database!", data);
-      this.searchQueryResult = data;
-      console.log(this.searchQueryResult);
+      // console.warn("running search Database!", data);
+      this.restaurants = data;
+      // console.log(this.searchQueryResult);
     })
   }
   onSelect(food: any){
@@ -75,12 +76,35 @@ export class HomePageComponent implements OnInit {
 
   }
  
-  onSelectRestaurant(restaurant: any){
-    this.selectedRestaurant = restaurant;
-    console.log(restaurant);
+  searchDataBySelection(method, parameter){
+    console.warn(this.searchInput)
     
+    this.searchMethodbyID.setMethod(method);
+    this.searchMethodbyID.setParameter(parameter);
+    
+    this.postData.fetchAPIData(this.searchMethodbyID).subscribe( data => {
+      console.warn("running search Database!", data);
+      // this.searchQueryResult = data;
+      // console.log(this.searchQueryResult);
+    })
+  }
+  onSelectRestaurant(restaurant: any){
+    // console.log(restaurant);
+    this.selectedRestaurant = restaurant;
+    this.datapointService.setRestaurant(restaurant);
+    // console.log(restaurant.restaurantid);
+    this.router.navigate(['/restaurant']);
+    // this.datapointService.setQueryResult(this.searchDataBySelection('getRestaurantLocationByID', restaurant.restaurantid));
+  }
+  // showMenu(restaurant){
+  //   this.datapointService.searchDataBySelection('getMenuOfRestaurant',this.selectedRestaurant.restaurantid )
+  //   .subscribe(data => console.log(data, "The menus"))
+  // }
+  select(restaurant: any){
+    this.selectedRestaurant = restaurant;
+    this.datapointService.setRestaurant(restaurant);
 
   }
- 
+  
 
 }

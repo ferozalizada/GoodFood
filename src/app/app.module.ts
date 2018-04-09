@@ -23,6 +23,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { MenuitemComponent } from './main-components/menuitem/menuitem.component';
 import { RestaurantComponent } from './main-components/restaurant/restaurant.component';
+import { RatersComponent } from './main-components/raters/raters.component';
+import { DatapointService } from './services/datapoint.service';
 // import { HttpClient } from '@angular/common/http';
 
 
@@ -35,7 +37,8 @@ import { RestaurantComponent } from './main-components/restaurant/restaurant.com
     HomePageComponent,
     MenuComponent,
     MenuitemComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    RatersComponent
   ],
   imports: [
     FormsModule,
@@ -49,7 +52,8 @@ import { RestaurantComponent } from './main-components/restaurant/restaurant.com
   ],
   providers: [
     FetchDataService,
-    PostDataService
+    PostDataService,
+    DatapointService
   ],
   bootstrap: [AppComponent]
 })

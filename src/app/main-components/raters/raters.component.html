@@ -1,0 +1,150 @@
+<app-navbar>
+
+</app-navbar>
+<form class="jumbotron" (ngSubmit)="getRatingComparison(getcomparison)">
+        <div class="row">
+                <input type="text" class=" col-6 input input-group" ngModel name="name" [(ngModel)]="name">
+                <button class="col-2 btn btn-primary">
+                    Compare Rater
+                </button>
+                <button class="btn btn-primary" (click)="showHighestRater(detail)" data-toggle="modal" data-target="#higestRater">
+                        Show Highest Rater
+                      </button>
+                      <button class="btn btn-primary" (click)="showHighestRaterP2(detail)" data-toggle="modal" data-target="#higestRater">
+                            Show Highest Rater By Food Mood
+                        </button>
+                        <button class="btn btn-primary" (click)="getRestaurantRatingNotCondition(detail)" data-toggle="modal" data-target="#higestRater">
+                                Get Restaurant Rating for year 2015
+                        </button>
+            </div>
+            
+</form>
+
+<div class="row" >
+        <div class="col-4 " *ngFor="let rater of diverseRaters">
+            <div class="card"   data-toggle="modal" data-target="#restaurantModal" >
+                <img class="card-img-top" src="https://source.unsplash.com/featured/?crisp,food" alt="Card image cap" width="200px" height="200px">
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text">
+                    <span class="row">
+
+                        Rater: Join-Date:
+                       <div class="font-weight-bold">
+
+                           {{rater.date}}
+                       </div>
+                    </span>    
+                        <span class="row">
+
+                            Rater:'s Email
+                           <div class="font-weight-bold">
+
+                               {{rater.email}}
+                           </div>
+                        </span>
+                        <span class="row">
+
+                            Rater:'s Food Voted
+                           <div class="font-weight-bold">
+
+                               {{rater.food}}
+                           </div>
+                        </span>
+                        <span class="row">
+
+                            Rater:'s mood
+                           <div class="font-weight-bold">
+
+                               {{rater.mood}}
+                           </div>
+                        </span>
+                        <span class="row">
+
+                            Rater:'s Name
+                           <div class="font-weight-bold">
+
+                               {{rater.name}}
+                           </div>
+                        </span>
+                        <span class="row">
+
+                            Rater:'s food price
+                           <div class="font-weight-bold">
+
+                               {{rater.price}}
+                           </div>
+                        </span>
+                        <span class="row">
+
+                            Rater:'s Number
+                           <div class="font-weight-bold">
+
+                               {{rater.staff}}
+                           </div>
+                        </span>
+                        <span class="row">
+
+                            Rater:'s type 
+                           <div class="font-weight-bold">
+
+                               {{rater.type}}
+                           </div>
+                        </span>
+                        
+                        
+                  </p>
+                  <p class="card-text"><small class="text-muted"></small></p>
+                </div>
+                
+              </div>
+        </div>
+    </div>
+
+
+
+
+
+  <div class="modal fade" id="higestRater" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+              <div class="card container" *ngFor="let rater of frequentRater">
+                <span class="row">
+
+                   Rating Date {{rater.date}}
+                </span>    
+                    <span class="row">
+
+                       Food Rated on {{rater.food}}
+                    </span>
+                    <span class="row">
+
+                       Rater's Mood {{rater.mood}}
+                    </span>
+                    <span class="row">
+
+                       Restaurant's Name {{rater.name}}
+                    </span>
+                    <span class="row">
+
+                        Rater's Reputation {{rater.reputation}}
+                    </span>
+                   
+    
+    
+    
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>

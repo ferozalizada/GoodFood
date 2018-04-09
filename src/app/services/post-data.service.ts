@@ -43,7 +43,9 @@ export class PostDataService {
   }
 
   fetchAPIData(method: Apicalls){
-    // console.warn(serialize(method));
     return this.httpClient.post(this.urlFetchAPI, serialize(method), options)
   }
+
+
+  
 }
