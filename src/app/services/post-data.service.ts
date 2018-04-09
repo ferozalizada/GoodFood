@@ -26,7 +26,7 @@ function serialize(json: object): string {
 
 @Injectable()
 export class PostDataService {
-  private url: string = 'http://localhost:8888/BackEndDB/signUp.php';
+  private urlsignUp: string = 'http://localhost:8888/BackEndDB/signUp.php';
   private urlLogin: string = 'http://localhost:8888/BackEndDB/login.php';
   private urlFetchAPI: string = 'http://localhost:8888/BackEndDB/fetchAPI.php';
   
@@ -34,8 +34,9 @@ export class PostDataService {
     console.log("Post services are running ");
   }
 
-  postRegistrationData(user: User): Observable<User> {
-    return this.httpClient.post<User>(this.url, serialize(user), options)
+  postRegistrationData(user: User) {
+    console.log(serialize(user))
+    return this.httpClient.post(this.urlsignUp, serialize(user), options)
   }
 
   loginUser(user: User) {

@@ -3,6 +3,7 @@ import { NgForm, FormControl, FormGroup, Validator, FormGroupName, FormBuilder, 
 import { HttpClient } from '@angular/common/http';
 import { PostDataService } from '../../services/post-data.service';
 import { PHPResponse } from '../../types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder, 
     private httpClient: HttpClient,
-    private postUserData: PostDataService
+    private postUserData: PostDataService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,6 +39,8 @@ export class LoginComponent implements OnInit {
         if(res.status === 'success'){
           alert('Welcome '+ res.data+ '! You are now logged in');
           this.currentUser.name = res.data;
+          this.router.navigate(['/'])
+
           // change the route
         } else {
           //route adn alert

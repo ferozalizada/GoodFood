@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
     this.datapointService.searchDataBySelection('getMenuOfRestaurant', this.restaurant.name)
     .subscribe((data)=>{
       this.menu = data;
-      console.log(data,"My data")
+      // console.log(data,"My data")
     })
   }
 
