@@ -1,0 +1,117 @@
+<app-navbar>
+  
+</app-navbar>
+<div class="container">
+    <div class="card mb-3"  routerLink= "/restaurant" *ngFor="let detail of details">
+      <img class="card-img-top" src="http://www.maximesrestaurant.ca/wp-content/uploads/2016/02/Maxime4974.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h2 class="card-title text-center">{{detail.name}}</h2>
+        <p class="card-text row">
+          <span class="col-4">
+            First Open Date:
+            {{detail.firstopen_date}}
+          </span>  
+          <span class="col-4">
+            Hours Open:
+            {{detail.hour_open}}
+          </span>
+          <span class="col-4">
+            Hours Close:
+            {{detail.hour_close}}
+          </span>
+          <span class="col-4">
+            Location ID:
+            {{detail.locationid}}
+          </span>
+          <span class="col-4">
+            Manager Name:
+            {{detail.manager_name}}
+          </span>
+          <span class="col-4">
+            Name:
+            {{detail.name}}
+          </span>
+          <span class="col-4">
+            Phone Number
+            {{detail.phone_number}}
+          </span>
+          <span class="col-4">
+            Restaurant ID:
+            {{detail.restaurantid}}
+          </span>
+          <span class="col-4">
+            Street Address:
+            {{detail.street_address}}
+          </span>
+           
+          <span class="col-4">
+            Type:
+            {{detail.type}}
+          </span>
+          
+        </p>
+        <p class="card-text"><small class="text-muted"><span class=" footer row small">
+            URL:col-
+            {{detail.url}}
+          </span>
+        </small></p>
+
+      </div>
+      <button class="btn btn-primary" (click)="showMenu(restaurant)">
+        Show Menu
+      </button>
+      <button class="btn btn-primary" (click)="showFrequentRater(detail.restaurantid)" data-toggle="modal" data-target="#exampleModal">
+          Show FrequentRater
+        </button>
+        
+    </div>
+    
+</div>
+
+
+<!-- modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="card container" *ngFor="let rater of frequentRater">
+            <span class="row">
+
+              Rater's Name: {{rater.name}}
+            </span>
+            <span class="row">
+
+              Rater's Comments: {{rater.comments}}
+            </span>
+            <span class="row">
+
+              Frequent Rated Item's Price: {{rater.price}}
+            </span>
+            <span class="row">
+
+              Rater's Reputation: {{rater.reputation}}
+            </span>
+          </div>
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

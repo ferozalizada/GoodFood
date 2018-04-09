@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatapointService } from '../../services/datapoint.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private datapointService: DatapointService) { }
 
   ngOnInit() {
+    this.showMenu();
+  }
+  menu: any;
+  restaurant: any;
+
+
+  showMenu(){
+    this.restaurant = this.datapointService.getSelectedRestaurant();
+    console.log(this.restaurant.name, "John Cena")
+    this.datapointService.searchDataBySelection('getMenuOfRestaurant', this.restaurant.name)
+    .subscribe((data)=>{
+      this.menu = data;
+      // console.log(data,"My data")
+    })
   }
 
 }

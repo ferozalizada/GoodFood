@@ -1,0 +1,10 @@
+.container-pad{
+    margin: 200px, 20px,
+}
+.ng-valid[required], .ng-valid.required  {
+    border-right: 5px solid rgb(47, 255, 75); /* green */
+  }
+  
+.ng-invalid:not(form)  {
+border-right: 5px solid lightcoral; /* red */
+}

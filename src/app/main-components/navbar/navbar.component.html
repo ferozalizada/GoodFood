@@ -8,13 +8,24 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Popular In Your Area<span class="sr-only">(current)</span></a>
+      <li class="nav-item active" routerLink="/specials">
+        <a class="nav-link" >Expensice Dishes<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active" routerLink="/averageprice">
+        <a class="nav-link" >Average Price Dishes<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)= "getData($event)">Favourites</a>
+        <a class="nav-link"(click)= "getData($event)">Favourites</a>
       </li>
-     
+      <li class="nav-item" routerLink="/raters">
+          <a class="nav-link" >raters</a>
+        </li>
+        <li class="nav-item" routerLink="/foods">
+          <a class="nav-link" >Foods</a>
+        </li>
+        <!-- <li class="nav-item" routerLink= "/raters">
+          <a class="nav-link"  >Raters</a>
+        </li> -->
     </ul>
     <form class="form-inline my-2 my-lg-0">
         

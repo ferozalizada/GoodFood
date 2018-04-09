@@ -1,3 +1,4 @@
+
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -8,24 +9,51 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="container">
-            <div class="row">
-              <div class="form-group col-4 ">
-                <label for="exampleInputEmail1">User ID</label>
-                <label for="exampleInputPassword1">Password</label>
+          <form #loginCredentials="ngForm" (ngSubmit)="authenticateUser(loginCredentials)" [formGroup]="loginForm">
+          <div class="container">
+                  <div class="row ">
+                    <div class="col-12 text-center">
+
+                      <strong class="small text-center text-danger" [hidden]="loginForm.valid">
+                        Enter your Credentials! <sup>*</sup>
+                      </strong>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-12">
+                      <input type="text" name="userName" formControlName="userName"
+                      class="form-control input-lg" placeholder="User Name" tabindex="3">
+                    </div>
+                  </div>
+                    <div class="row">
+                      <div class="form-group col-12">
+                        <input type="password" name="password" formControlName="password" 
+                        class="form-control input-lg" placeholder="Password" tabindex="4">
+                      </div>
+                    </div>
+                  
+                  <a class="small form-text text-muted text-center row" href="#">Forgot Password?</a>            
+                  
               </div>
-              <div class="form-group col-6">  
-                  <input type="ID" class="form-control" id="exampleInputEmail1" placeholder="User ID">
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <hr class="colorgraph">
+                       
+              <div class="container">
+      
+                <div class="row">
+                  <div class="col-xs-12 col-md-6" data-dismiss="modal" routerLink="/home">
+                    <input value="Cancel" class="btn btn-danger btn-block btn-lg" >
+                  </div>
+                  <div class="col-xs-12 col-md-6">
+                    <button type="submit" [disabled]="!loginCredentials.valid"
+                    class="btn btn-success btn-block btn-lg">Sign In</button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <a class="small form-text text-muted text-center row" href="#">Forgot Password?</a>            
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Log In</button>
-        </div>
+            </form>
+          </div>
+          
+      
       </div>
     </div>
   </div>
