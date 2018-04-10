@@ -27,6 +27,7 @@ import { RatersComponent } from './main-components/raters/raters.component';
 import { DatapointService } from './services/datapoint.service';
 import { SpecialsComponent } from './main-components/specials/specials.component';
 import { AveragepriceComponent } from './main-components/averageprice/averageprice.component';
+import { UpdatedataComponent } from './main-components/updatedata/updatedata.component';
 // import { HttpClient } from '@angular/common/http';
 
 
@@ -42,7 +43,8 @@ import { AveragepriceComponent } from './main-components/averageprice/averagepri
     RestaurantComponent,
     RatersComponent,
     SpecialsComponent,
-    AveragepriceComponent
+    AveragepriceComponent,
+    UpdatedataComponent
   ],
   imports: [
     FormsModule,

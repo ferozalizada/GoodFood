@@ -1,6 +1,6 @@
 export class Apicalls {
-    private method: string;
-    private parameter: string;
+    public method: string;
+    public parameter: string;
     constructor(method: string, parameter: string){
         this.method = method;
         this.parameter = parameter;

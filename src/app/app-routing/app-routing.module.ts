@@ -11,6 +11,7 @@ import { MenuComponent } from '../main-components/menu/menu.component';
 import { MenuitemComponent } from '../main-components/menuitem/menuitem.component';
 import { SpecialsComponent } from '../main-components/specials/specials.component';
 import { AveragepriceComponent } from '../main-components/averageprice/averageprice.component';
+import { UpdatedataComponent } from '../main-components/updatedata/updatedata.component';
 // import {}
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent
   },{
+    path: 'adminstrator',
+    component: UpdatedataComponent
+  },
+  {
 path: 'averageprice'
 ,component: AveragepriceComponent
   },

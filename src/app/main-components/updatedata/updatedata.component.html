@@ -1,0 +1,126 @@
+<app-navbar></app-navbar>
+<div class="container">
+  
+  <div class="jumbotron">
+    <h4 class="header">Add Delete Restaurants!</h4>
+    <form class="row">
+      
+      <div class="col-6">
+        <input class="input form-control input-control" type="text" name="parameter" [(ngModel)]="deleteR.parameter">
+      </div>
+      
+      <div class="col-3 ">
+        <button class=" btn btn-primary" 
+        type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertRestaurant" data-whatever="@mdo">
+          Insert
+        </button>
+        <button class="btn btn-danger" (click)="deleteRestaurant()">
+            Delete
+        </button>
+      </div>
+      
+     
+    </form>
+  </div>
+
+<div class="jumbotron">
+    <h4 class="header">Add Delete MenuItem!</h4>
+    <form class="row">
+      <div class="col-6">
+        <input class="input form-control input-control" name="deleteM" type="text" [(ngModel)]="deleteM.parameter" >
+      </div>
+      <div class="col-3 ">
+        <button class=" btn btn-primary"  
+        type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertMenuItem" data-whatever="@mdo">
+          Insert
+        </button>
+        <button class="btn btn-danger" (click)="deleteMenuItem()">
+            Delete
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="modal fade" id="insertRestaurant" tabindex="-1" role="dialog">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" name="Name" placeholder="Name" id="1" [(ngModel)]="restaurant.name">
+            <input type="text" class="form-control" name="RestaurantID" placeholder="RestaurantID" id="2" [(ngModel)]="restaurant.id">
+            <input type="text" class="form-control" name="Type" placeholder="Type" id="3" [(ngModel)]="restaurant.type">
+            <input type="text" class="form-control" name="URL" placeholder="URL" id="4" [(ngModel)]="restaurant.url">
+            <input type="text" class="form-control" name="Picture" placeholder="Picture" id="5" [(ngModel)]="restaurant.pictureUrl">
+            
+          </div>
+          <div class="form-group">
+            
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+
+      <div class="container row">
+
+        <button class="btn btn-warning" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" (click)="insertRestaurant()">Add</button>
+      </div>
+    
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="insertMenuItem" tabindex="-1" role="dialog">
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" name="itemId" [(ngModel)]="menuItem.itemId" placeholder="ID" id="1">
+              <input type="text" class="form-control" name="name" [(ngModel)]="menuItem.name" placeholder="Name" id="2">
+              <input type="text" class="form-control" name="category" [(ngModel)]="menuItem.category" placeholder="Category" id="3">
+              <input type="text" class="form-control" name="type" [(ngModel)]="menuItem.type" placeholder="type" id="4">
+              <input type="text" class="form-control" name="description" [(ngModel)]="menuItem.description" placeholder="description" id="5">
+              <input type="text" class="form-control" name="price" [(ngModel)]="menuItem.price" placeholder="price" id="5">
+              <input type="text" class="form-control" name="restaurantId" [(ngModel)]="menuItem.restaurantId" placeholder="RestaurantId" id="5">
+              
+            </div>
+            <div class="form-group">
+              
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+  
+        <div class="container row">
+  
+          <button class="btn btn-warning" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary" (click)="insertMenuItem(selectedMenuItem)" >Add</button>
+        </div>
+      
+  
+      </div>
+    </div>
+  </div>
