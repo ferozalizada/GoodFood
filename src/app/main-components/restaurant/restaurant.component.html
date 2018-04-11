@@ -2,67 +2,108 @@
   
 </app-navbar>
 <div class="container">
-    <div class="card mb-3"  routerLink= "/restaurant" *ngFor="let detail of details">
-      <img class="card-img-top" src="http://www.maximesrestaurant.ca/wp-content/uploads/2016/02/Maxime4974.jpg" alt="Card image cap">
+    <div class="card mb-3" *ngFor="let detail of details">
+
+      <img class="card-img-top rounded-top" src="{{detail.picture}}" alt="Card image cap" width="450px" height="300px">
       <div class="card-body">
         <h2 class="card-title text-center">{{detail.name}}</h2>
-        <p class="card-text row">
-          <span class="col-4">
-            First Open Date:
-            {{detail.firstopen_date}}
-          </span>  
-          <span class="col-4">
-            Hours Open:
-            {{detail.hour_open}}
-          </span>
-          <span class="col-4">
-            Hours Close:
-            {{detail.hour_close}}
-          </span>
-          <span class="col-4">
-            Location ID:
-            {{detail.locationid}}
-          </span>
-          <span class="col-4">
-            Manager Name:
-            {{detail.manager_name}}
-          </span>
-          <span class="col-4">
-            Name:
-            {{detail.name}}
-          </span>
-          <span class="col-4">
-            Phone Number
-            {{detail.phone_number}}
-          </span>
-          <span class="col-4">
-            Restaurant ID:
-            {{detail.restaurantid}}
-          </span>
-          <span class="col-4">
-            Street Address:
-            {{detail.street_address}}
-          </span>
-           
-          <span class="col-4">
-            Type:
-            {{detail.type}}
-          </span>
-          
-        </p>
-        <p class="card-text"><small class="text-muted"><span class=" footer row small">
-            URL:col-
-            {{detail.url}}
-          </span>
-        </small></p>
+        <hr>
+        <div class="row card-text text-underline row">
+          <!-- <div class="row"> -->
+              <h6 class="col-4 font-weight-bold ">
+                  Phone Number:
+                  <span class="font-weight-normal small text-success">
+                      {{detail.phone_number}}
+                  </span>
+              </h6>  
+            <h6 class="col-4 font-weight-bold">
+              First Open Date:
+              <span class="font-weight-normal small">
+                {{detail.firstopen_date}}
+              </span>
+            </h6>  
+            <h6 class="col-4 font-weight-bold">
+                Hours Open:
+                <span class="font-weight-normal small">
+                    {{detail.hour_open}}
+                </span>
+            </h6>  
+            <h6 class="col-4 font-weight-bold">
+                Hours Close:
+                <span class="font-weight-normal small">
+                    {{detail.hour_close}}
+                </span>
+            </h6>  
+            <h6 class="col-4 font-weight-bold">
+                Location ID:
+                <span class="font-weight-normal small">
+                    {{detail.locationid}}
+                </span>
+            </h6>  
+            <h6 class="col-4 font-weight-bold">
+                Manager Name:
+                <span class="font-weight-normal small">
+                    {{detail.manager_name}}
+                </span>
+            </h6>  
+            <h6 class="col-4 font-weight-bold">
+                Name:
+                <span class="font-weight-normal small">
+                    {{detail.name}}
+                </span>
+            </h6>  
+            
+            <h6 class="col-4 font-weight-bold">
+                Restaurant ID:
+                <span class="font-weight-normal small">
+                    {{detail.restaurantid}}
+                </span>
+            </h6>  
+            <h6 class="col-4 font-weight-bold">
+                Street Address:
+                <span class="font-weight-normal small">
+                    {{detail.street_address}}
+                </span>
+            </h6>  
+         
+            <h6 class="col-4 font-weight-bold">
+                Type:
+                <span class="font-weight-normal small">
+                {{detail.type}}
+                </span>
+            </h6>  
+            <h6 class="col-4 font-weight-bold">
+                URL: 
+                <span class="font-weight-normal small">
+                  
+                    {{detail.url}}
+                </span>
+            </h6>  
+            
 
+          
+          <p class="card-text"><small class="text-muted"><span class=" footer row small">
+          
+        </span></small></p>
+        </div>
+        <hr>
+        <div class="row text-center">
+  
+          <button class="col-md-4 col-sm-12 btn btn-primary" (click)="showMenu(restaurant)">
+            Show Menu
+          </button>
+          <button class="col-md-4 col-sm-12 btn btn-success" (click)="showFrequentRater(detail.restaurantid)" data-toggle="modal" data-target="#exampleModal">
+              Show Frequent Rater
+            </button>
+            <button class="col-md-4 col-sm-12 btn btn-danger"  data-toggle="modal" data-target="#rate">
+                Rate this Restaurant!
+              </button>
+            <div class="container text-center">
+              <hr>
+             
+            </div>
+        </div>
       </div>
-      <button class="btn btn-primary" (click)="showMenu(restaurant)">
-        Show Menu
-      </button>
-      <button class="btn btn-primary" (click)="showFrequentRater(detail.restaurantid)" data-toggle="modal" data-target="#exampleModal">
-          Show FrequentRater
-        </button>
         
     </div>
     
@@ -115,3 +156,80 @@
   </div>
 
 
+  <!-- Modal -->
+  <div class="modal fade" id="rate" tabindex="-1" role="dialog" aria-labelledby="rate" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="rate">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            
+            <form #ratingInfo="ngForm" (ngSubmit)="rateRestaurant(rate)">
+               
+              
+                <div class="form-group">
+                    <label for="food">Food</label>
+                    <select ngModel [(ngModel)]="rate.food" name="food" class="form-control" id="food">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="Mood">Mood</label>
+                      <select ngModel [(ngModel)]="rate.mood" name="mood" class="form-control" id="Mood">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                    <label for="Staff">Staff</label>
+                    <select ngModel [(ngModel)]="rate.staff" name="staff" class="form-control" id="Staff">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="Price">Price</label>
+                      <select ngModel [(ngModel)]="rate.price" name="price" class="form-control" id="Price">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                    <!-- <input ngModel name="restaurantid" type="text" value="{{restaurant.restaurantid}}"> -->
+
+                <div class="form-group">
+                  <label for="comment">Comment</label>
+                  <textarea ngModel [(ngModel)]="rate.comment" name="comment" class="form-control" id="comment" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+  
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  

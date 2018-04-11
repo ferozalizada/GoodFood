@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #loginCredentials="ngForm" (ngSubmit)="authenticateUser(loginCredentials)" [formGroup]="loginForm">
+          <form #loginCredentials="ngForm"  [formGroup]="loginForm">
           <div class="container">
                   <div class="row ">
                     <div class="col-12 text-center">
@@ -46,7 +46,11 @@
                   </div>
                   <div class="col-xs-12 col-md-6">
                     <button type="submit" [disabled]="!loginCredentials.valid"
-                    class="btn btn-success btn-block btn-lg">Sign In</button>
+                    class="btn btn-success btn-block btn-lg" 
+                    data-dismiss="modal" 
+                    (click)="authenticateUser(loginCredentials)"
+                    routerLink="/home"
+                    >Sign In</button>
                   </div>
                 </div>
               </div>

@@ -43,8 +43,9 @@ export class PostDataService {
   postMenuItem(menu: MenuItems){
     return this.httpClient.post(this.urlpushAPI2, serialize(menu), options)
   }
-  deteletRestaurant(id: Apicalls){
-    return this.httpClient.post(this.urlpushAPI, serialize(id), options)
+  deleteRestaurant(id: any){
+    var x = new Apicalls('deleteRestaurant',id);
+    return this.httpClient.post(this.urlpushAPI, serialize(x), options)
   }
   deteletMenuItem(id: Apicalls){
     return this.httpClient.post(this.urlpushAPI2, serialize(id), options)
@@ -63,6 +64,27 @@ export class PostDataService {
     return this.httpClient.post(this.urlFetchAPI, serialize(method), options)
   }
 
+  searchString(query: any){
+    var result = new Apicalls('getRestaurantLocationByID', query);
+    return this.fetchAPIData(result);
+  }
+  getTopRatedByType(){
+    var result = new Apicalls('getTypePopularity', 'query');
+    return this.fetchAPIData(result);
+  }
+  getMenuOfRestaurant(id: any){
+    var result = new Apicalls('getMenuOfRestaurant', id)
+      return this.fetchAPIData(result);
+  }
+  getRestaurantDetails(id: any){
+    var result = new Apicalls('getRestaurantDetails', id)
+    return this.fetchAPIData(result);
+  }
+  rateRestaurant(form: object){
+    return this.httpClient.post(this.urlpushAPI, serialize(form), options);
+
+
+  }
 
   
 }

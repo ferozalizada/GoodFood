@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm, FormControl, FormGroup, Validator, FormGroupName, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { PostDataService } from '../../services/post-data.service';
 import { PHPResponse } from '../../types';
 import { Router } from '@angular/router';
+import { DatapointService } from '../../services/datapoint.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     private formbuilder: FormBuilder, 
     private httpClient: HttpClient,
     private postUserData: PostDataService,
-    private router: Router
+    private router: Router,
+    private dataPointService: DatapointService
   ) { }
 
   ngOnInit() {
@@ -30,24 +32,20 @@ export class LoginComponent implements OnInit {
       password:['', [Validators.required, Validators.minLength(6)]]
     })
   }
-  currentUser = {
-    name:""
-  };
+  currentUser;
   authenticateUser(user: NgForm) {
     this.postUserData.loginUser(user.value)
       .subscribe((res: PHPResponse) => {
         if(res.status === 'success'){
           alert('Welcome '+ res.data+ '! You are now logged in');
-          this.currentUser.name = res.data;
-          this.router.navigate(['/'])
-
-          // change the route
+          this.currentUser = res.data;
+          this.dataPointService.changeCurrentData(this.currentUser);
         } else {
-          //route adn alert
-          alert("No such User");
+            alert("No such User");
         }
 
       })
     this.loginForm.reset();
+    
   }
 }

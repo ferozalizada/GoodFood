@@ -11,6 +11,7 @@ import { Apicalls } from '../../classes/apicalls';
 })
 export class UpdatedataComponent implements OnInit {
   selectedMenuItem: any;
+  
   restaurant= new Restaurant(
     '',
     '',
@@ -60,7 +61,7 @@ export class UpdatedataComponent implements OnInit {
   }
   deleteRestaurant(){
     console.warn(this.deleteR)
-    this.postdata.deteletRestaurant(this.deleteR).subscribe(
+    this.postdata.deleteRestaurant(this.deleteR).subscribe(
       data =>{
         console.log(data,"is delete from restaurant");
       }
@@ -69,7 +70,7 @@ export class UpdatedataComponent implements OnInit {
   }
   deleteMenuItem(){
     console.warn(this.deleteM)
-    this.postdata.deteletRestaurant(this.deleteM).subscribe(
+    this.postdata.deleteRestaurant(this.deleteM).subscribe(
       data =>{
         console.log(data,"is delete from restaurant");
       }

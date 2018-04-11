@@ -4,7 +4,7 @@ import { Apicalls } from '../../classes/apicalls';
 import { PostDataService } from '../../services/post-data.service';
 import { Restaurant } from '../../classes/restaurant';
 import { NgForm } from '@angular/forms';
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import { DatapointService } from '../../services/datapoint.service';
 
 @Component({
@@ -13,98 +13,95 @@ import { DatapointService } from '../../services/datapoint.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  // restaurants: = [];
   topRatedFood:any;
-  x:Apicalls;
   restaurants : any = [];
   searchQueryResult : any = [];
-  // method = new Apicalls('getRestaurantsById', '1');
   topRated = new Apicalls('getTypePopularity', 'Asian');
-  searchMethodbyID = new Apicalls('getRestaurantLocationByName', '');
   
 
-  searchInput: string;
-
+  searchInput: any;
+  flag = false;
+  flag2 = false;
   selectedFood:any;
   selectedRestaurant:any;
+  menuItems: any = [];
+
+
   constructor(
     private datapointService: DatapointService,
     private router: Router,
     private fetchData: FetchDataService,
-    private postData: PostDataService
+    private postData: PostDataService,
+    private activatedRoute: ActivatedRoute
   ) { }
-  // createMethod(method, parameter){
-  //   this.method.method = 'getRestaurantsById', this.method.parameter = '1'
-  // }
+
   ngOnInit() {
     this.getRestaurants();
-    // console.warn(this.topRated);
-    this.getData(this.topRated);
-    // this.getData(this.apicall2);
+    this.getTopRatedRestaurantData();
   }
+
   getRestaurants(){
     this.fetchData.fetchRestaurant().subscribe( data => {
       this.restaurants = data;
-      // console.log(this.restaurants, "Data eh?")
-      }
-    )
-  }
-  getData(method: Apicalls){
-    this.postData.fetchAPIData(method).subscribe( data => {
-      this.topRatedFood = data;
-      console.log(data, 'Top Rated food');
-      // this.restaurants = data;
     })
   }
+
+  getTopRatedRestaurantData(){
+    this.postData.getTopRatedByType()
+      .subscribe( data => {
+        this.topRatedFood = data;
+    })
+  }
+
   alertMe(food: any){
     console.warn("type clicked", food);
     this.datapointService.setFoodType(food);
   }
+
   searchDatabase(){
-    // console.warn(this.searchInput)
-    this.searchMethodbyID.setMethod("getRestaurantLocationByID");
-    this.searchMethodbyID.setParameter(this.searchInput);
-    this.postData.fetchAPIData(this.searchMethodbyID).subscribe( data => {
-      // console.warn("running search Database!", data);
-      this.restaurants = data;
-      // console.log(this.searchQueryResult);
-    })
+    this.postData.searchString(this.searchInput)
+      .subscribe( (data => {
+        this.restaurants = data;
+    }))
   }
   onSelect(food: any){
     this.selectedFood = food;
     console.log(food)
-
-  }
- 
-  searchDataBySelection(method, parameter){
-    console.warn(this.searchInput)
-    
-    this.searchMethodbyID.setMethod(method);
-    this.searchMethodbyID.setParameter(parameter);
-    
-    this.postData.fetchAPIData(this.searchMethodbyID).subscribe( data => {
-      console.warn("running search Database!", data);
-      // this.searchQueryResult = data;
-      // console.log(this.searchQueryResult);
-    })
   }
   onSelectRestaurant(restaurant: any){
-    // console.log(restaurant);
     this.selectedRestaurant = restaurant;
     this.datapointService.setRestaurant(restaurant);
-    // console.log(restaurant.restaurantid);
-    this.router.navigate(['/restaurant']);
-    // this.datapointService.setQueryResult(this.searchDataBySelection('getRestaurantLocationByID', restaurant.restaurantid));
+    this.router.navigate(['restaurant', restaurant.restaurantid]);
   }
-  // showMenu(restaurant){
-  //   this.datapointService.searchDataBySelection('getMenuOfRestaurant',this.selectedRestaurant.restaurantid )
-  //   .subscribe(data => console.log(data, "The menus"))
-  // }
+
   select(restaurant: any){
     this.selectedRestaurant = restaurant;
     this.datapointService.setRestaurant(restaurant);
+  }
+  showAllTopRated(){
+    if(this.flag){
+      this.flag = false;
+    }else{
+      this.flag = true;
+    }
+  }
+  showAllRestaurant(){
+    if(this.flag2){
+      this.flag2 = false;
+    }else{
+      this.flag2 = true;
+    }
+  }
+
+  deleteRestaurant(restaurant: any){
+    let x = restaurant;
+    this.postData.deleteRestaurant(restaurant)
+      .subscribe(function(data){
+        if(data == null){
+          alert( "the restaurant is deleted"); 
+        }
+      })
+      
 
   }
-  
-
 }

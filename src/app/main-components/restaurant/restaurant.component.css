@@ -2,3 +2,19 @@
     height: 400px;
     width: 100%;
 }
+
+.rounded-top{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.rater:hover{
+    color: greenyellow;
+}
+.rater:active{
+    color: red;
+}
+.rater:visited{
+    color: #000000;
+    font: bold;
+    background: lightgrey;
+}

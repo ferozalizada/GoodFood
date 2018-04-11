@@ -15,20 +15,42 @@ import { UpdatedataComponent } from '../main-components/updatedata/updatedata.co
 // import {}
 
 const routes: Routes = [
+
   {
     path: '',
-    component: HomePageComponent
-  },{
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
     path: 'adminstrator',
     component: UpdatedataComponent
   },
   {
-path: 'averageprice'
-,component: AveragepriceComponent
+    path: 'averageprice'
+    ,component: AveragepriceComponent
   },
   {
     path: 'home',
-    component: HomePageComponent
+    component: HomePageComponent,
+    
+  },{
+    path: 'restaurant',
+    children:[
+      {
+        path: ':restaurantid',
+        component: RestaurantComponent
+        // children:[
+        //   {
+        //     path: 'menu',
+        //     component: MenuComponent
+        //   }
+        // ]
+      }
+    ]
+  },
+  {
+    path: 'menu',
+    component: MenuComponent
   },
   {
     path: 'specials',
@@ -42,16 +64,9 @@ path: 'averageprice'
     path: 'register',
     component: RegisterComponent
   },
-  {
-    path: 'restaurant',
-    component: RestaurantComponent
-  },
+  
   { path:'raters',
   component: RatersComponent
-  },
-  {
-    path: 'menu',
-    component: MenuComponent
   },
   {
     path: 'foods',

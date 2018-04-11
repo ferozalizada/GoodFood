@@ -1,23 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Apicalls } from '../classes/apicalls';
 import { PostDataService } from './post-data.service';
+import{ BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class DatapointService {
+  private contentSharingService = new BehaviorSubject<any>('');
+  currentData = this.contentSharingService.asObservable();
   searchMethodbyID = new Apicalls('','');
+  
   constructor(
     private postData: PostDataService
   ) { }
 
-  mySelectedRestaurant: any;
+  currentRestaurant: any;
   queryResultByID: any;
   foodType: any;
 
+  changeCurrentData(data: any){
+    this.contentSharingService.next(data);
+  }
   setRestaurant(res: any){
-    this.mySelectedRestaurant = res;
+    this.currentRestaurant = res;
   }
   getSelectedRestaurant(){
-    return this.mySelectedRestaurant;
+    return this.currentRestaurant;
   }
   setQueryResult(query: any){
     this.setQueryResult = query;
@@ -41,6 +48,8 @@ export class DatapointService {
   getFoodType(){
     return this.foodType;
   }
+
+
 
   
 

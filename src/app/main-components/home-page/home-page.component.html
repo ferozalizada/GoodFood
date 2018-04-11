@@ -14,6 +14,8 @@
           <div class="form-group input-group mb-3 justify-content-md-center align-self-center">
               <input  type="text" class="form-control"
               name="searchbox"
+              required
+              #searchBox="ngModel"
               [(ngModel)]="searchInput"
               placeholder="Search for Restaurant or Cuisin"
               aria-label="Search" >
@@ -26,66 +28,84 @@
       
     </div>
   </div>
-  <div class="row jumbotron align-items-center ">
-      <h1 class="text text-center">
-          Top Reviewed Food of the Week!
-      </h1>
+  <div class="row jumbotron align-items-center " *ngIf="(searchBox.pristine || searchBox.pending)">
+      <div class="container">
+          <h4 class="text text-center ">
+              Top Reviewed Food of the Week!
+          </h4>
+          
+      </div>
       <div class="container ">
         <div class="row">
-            <div class="col-3 card-small" *ngFor="let food of topRatedFood">
-              <div class="row" (click)="onSelect(food)" routerLink="/foods">
+            <div class="col-sm-12 col-md-5 card-small" *ngFor="let food of topRatedFood; let i = index">
+              <div class="row" (click)="onSelect(food)" routerLink="/foods" *ngIf="i<4 || flag">
                   <div class="row align-items-center color-bg rounded" (click)="alertMe(food)">
-                
-                      <img class="col-12 col-md-5 rounded " width="70px" height="90px" alt="Grandfather with child" 
+              
+                      <img class="col-2 col-md-5 rounded " width="70px" height="90px" alt="Grandfather with child" 
                       src="https://design-milk.com/images/2016/08/Shade-Burger-YOD-studio-1.jpg" sizes="(max-width: 650px) 100vw, 650px">
                       
-                      <div class="col- col-md-7">
+                      <div class="col-sm-7 col-md-7">
 
                         <div class="card-body">
                           <h6 class="small font-weight-bold">{{food.type}}</h6>
-                          <!-- <hr class="half-rule"/> -->
-                          <p class="small">Total Reviews: {{food.total_reviews}}</p>
-                          <!-- <a class="text">Contact Us</a> -->
-          
-                        </div>
+                          
+                          <p class="small">Total Reviews: <b class="text-danger">{{food.total_reviews}}</b>
+                        </p>
                       </div>
+                    </div>
                   </div>
-              </div>
+                </div>
                 
+              </div>
             </div>
-        </div>
+            <a class="no-margin" (click)="showAllTopRated()">
+              <p class="no-margin text-center">
+                <span class="large big no-margin dot btn">
+                  ...
+                </span>
+              </p>
+
+            </a>
         
           
       </div>
       
       
   </div>
-  <div class="row" >
-    <div class="col-4 " *ngFor="let restaurant of restaurants" >
-        <div class="card"   data-toggle="modal" data-target="#restaurantModal">
-            <img class="card-img-top" (click)="onSelectRestaurant(restaurant)" src="https://media-cdn.tripadvisor.com/media/photo-s/0d/5d/4a/f3/salle-de-restaurant.jpg" alt="Card image cap">
+  <div class="jumbotron row">
+    <h4 class="col-md-12 ">Restaurants</h4>
+    <div class="col-lg-3 col-md-4 col-sm-4 " *ngFor="let restaurant of restaurants; let i = index" >
+        <div class="card radius d-inline-block"   data-toggle="modal" data-target="#restaurantModal" *ngIf="i<8 || flag2">
+            <img class=" radius card-img-top" width="200px" height="150px"
+            (click)="onSelectRestaurant(restaurant)"
+            
+            src="{{restaurant.picture}}" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">{{restaurant.name}}</h5>
-              <p class="card-text">
+              <h5 class="card-title title text-center">{{restaurant.name}}</h5>
+              <p class="card-text small">
                 {{restaurant.type}}
+              
               </p>
-              <p class="card-text"><small class="text-muted">{{restaurant.url}}</small></p>
+              <p class="card-text small"><small class="text-muted">{{restaurant.url}}</small></p>
+              <div class="container">
+  
+                <div class="row">
+                  <button class="col-6 btn btn-sm btn-primary" routerLink="/menu" (click)="select(restaurant)">
+                    Show Menu!
+                  </button>
+                  <button class="col-6 btn btn-sm btn-danger"  (click)="deleteRestaurant(restaurant.restaurantid)">
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
-            <button class="btn btn-primary" routerLink="/menu" (click)="select(restaurant)">
-              Show Menu!
-            </button>
           </div>
     </div>
+<div class="container">
 
+  <a class="text-center" (click)="showAllRestaurant()">
+    <h1>...</h1>
+  </a>
+</div>
   </div>
 </div>
-
-
-<!-- 
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#restaurantModal">
-    
-  </button> -->
-  
-  <!-- Modal -->
-  
