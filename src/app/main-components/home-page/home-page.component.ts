@@ -18,6 +18,7 @@ export class HomePageComponent implements OnInit {
   searchQueryResult : any = [];
   topRated = new Apicalls('getTypePopularity', 'Asian');
   
+  searchWhat: any;
 
   searchInput: any;
   flag = false;
@@ -59,10 +60,17 @@ export class HomePageComponent implements OnInit {
   }
 
   searchDatabase(){
-    this.postData.searchString(this.searchInput)
-      .subscribe( (data => {
-        this.restaurants = data;
-    }))
+    if(this.searchWhat === 'getTypeDetails'){
+      this.postData.getTypeDetails(this.searchInput)
+        .subscribe( data=>{
+          this.restaurants = data;
+        })
+    }else{
+      this.postData.searchString(this.searchInput)
+        .subscribe( (data => {
+          this.restaurants = data;
+      }))
+    }
   }
   onSelect(food: any){
     this.selectedFood = food;

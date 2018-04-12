@@ -4,16 +4,35 @@
 <div class="jumbotron">
   <div class="container">
     <div class="row">
-      <div class="col-3"></div>
-        <div class="col-6 card" *ngFor="let x of foodmenu">
-            <img class="card-img-top" src="http://www.glowbalgroup.com/img/cst-img/pdr2/img1.jpg" alt="Card image cap">
+      <div class="col-2"></div>
+
+        <div class="col-md-4 card" *ngFor="let x of foodmenu">
+            <img class="card-img-top" src="{{x.picture}}" alt="Card image cap" width="100%" height="150px">
             <div class="card-body">
               <h5 class="card-title">{{x.name}}</h5>
               <div class="container">
               
                   <span class="row">
-        
-                    {{x.picture}}
+                    <span class="font-weight-bold">
+                      <h4>
+
+                        First Open Date:
+                      </h4>
+                    </span>
+                      {{x.firstopen_date}}
+                      {{x.hour_close}}
+                      {{x.hour_open}}
+                      {{x.locationid}}
+                      {{x.manager_name}}
+                      {{x.name}}
+                      {{x.phone_number}}
+                      
+                      {{x.restaurantid}}
+                      {{x.street_address}}
+                      {{x.type}}
+                      {{x.url}}
+                      
+                    
                   </span>
                   <span class="row">
         
@@ -32,13 +51,9 @@
                     {{x.url}}
                   </span>
               </div>
-              
-                  
-              
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
-          <div class="col-3"></div>
+          <div class=""></div>
     </div>
   </div>
 </div>

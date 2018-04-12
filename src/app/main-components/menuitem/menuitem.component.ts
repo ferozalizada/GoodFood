@@ -16,10 +16,7 @@ foodmenu: any;
   }
 
   getHighestRatedFood(food: any){
-    // console.warn('here is the new line')
-    // console.log(, 'same')
-    // this.foodx =  food;
-    // console.log(this.foodx.type)
+
     this.datapointService.searchDataBySelection('getHighRatedFoodbyRestaurantType', this.datapointService.getFoodType().type)
     .subscribe((data)=>{
       this.foodmenu = data;

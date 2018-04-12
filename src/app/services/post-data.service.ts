@@ -82,8 +82,17 @@ export class PostDataService {
   }
   rateRestaurant(form: object){
     return this.httpClient.post(this.urlpushAPI, serialize(form), options);
-
-
+  }
+  getTypeDetails(id: any){
+    var result = new Apicalls('getTypeDetails', id)
+    return this.fetchAPIData(result);
+  }
+  searchEverything(input: Apicalls){
+    return this.httpClient.post(this.urlFetchAPI, serialize(input), options);
+  }
+  fetchFoodMenu(input: any){
+    var x = new Apicalls('fetchFoodMenu', input);
+    return this.fetchAPIData(x);
   }
 
   

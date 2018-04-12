@@ -12,6 +12,7 @@ import { MenuitemComponent } from '../main-components/menuitem/menuitem.componen
 import { SpecialsComponent } from '../main-components/specials/specials.component';
 import { AveragepriceComponent } from '../main-components/averageprice/averageprice.component';
 import { UpdatedataComponent } from '../main-components/updatedata/updatedata.component';
+import { CollectionComponent } from '../main-components/collection/collection.component';
 // import {}
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
         // ]
       }
     ]
+  },
+  {
+    path: 'collection',
+    component: CollectionComponent
   },
   {
     path: 'menu',

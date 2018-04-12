@@ -12,6 +12,7 @@
           </p>        
           
           <div class="form-group input-group mb-3 justify-content-md-center align-self-center">
+
               <input  type="text" class="form-control"
               name="searchbox"
               required
@@ -37,11 +38,11 @@
       </div>
       <div class="container ">
         <div class="row">
-            <div class="col-sm-12 col-md-5 card-small" *ngFor="let food of topRatedFood; let i = index">
+            <div class="col-sm-9 col-md-5 card-small" *ngFor="let food of topRatedFood; let i = index">
               <div class="row" (click)="onSelect(food)" routerLink="/foods" *ngIf="i<4 || flag">
                   <div class="row align-items-center color-bg rounded" (click)="alertMe(food)">
               
-                      <img class="col-2 col-md-5 rounded " width="70px" height="90px" alt="Grandfather with child" 
+                      <img class="col-sm-5 col-md-5 rounded " width="70px" height="90px" alt="Grandfather with child" 
                       src="https://design-milk.com/images/2016/08/Shade-Burger-YOD-studio-1.jpg" sizes="(max-width: 650px) 100vw, 650px">
                       
                       <div class="col-sm-7 col-md-7">
@@ -74,7 +75,7 @@
   </div>
   <div class="jumbotron row">
     <h4 class="col-md-12 ">Restaurants</h4>
-    <div class="col-lg-3 col-md-4 col-sm-4 " *ngFor="let restaurant of restaurants; let i = index" >
+    <div class="col-lg-3 col-md-4 col-sm-6 " *ngFor="let restaurant of restaurants; let i = index" >
         <div class="card radius d-inline-block"   data-toggle="modal" data-target="#restaurantModal" *ngIf="i<8 || flag2">
             <img class=" radius card-img-top" width="200px" height="150px"
             (click)="onSelectRestaurant(restaurant)"
@@ -107,5 +108,5 @@
     <h1>...</h1>
   </a>
 </div>
-  </div>
+</div>
 </div>

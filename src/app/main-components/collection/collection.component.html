@@ -1,0 +1,295 @@
+<app-navbar></app-navbar>
+<div class="container" >
+    <div class="row">
+      <!-- <router-outlet></router-outlet> -->
+      <div class="col-12 jumbotron img" >
+        <form  #searchForm="ngForm" (ngSubmit)="searchDatabase(searchForm)" >
+            <h1 class="pull-right">
+                GoodFood!
+            </h1>  
+            <p>
+              Search all of our best Restaurant to find your choice of Food!
+            </p>        
+            
+            <div class="form-group input-group mb-3 justify-content-md-center align-self-center">
+
+                <select #newSelect [(ngModel)]="type" (change)="onChange(type)" name="seachType" class="form-control select col-2" >
+                  <option  value="getTypeDetailsByCategory">Category</option>
+                  <option  value="getTypeDetails">Type</option>
+                  <option  value="getSpecialsDetail">Special Details</option>
+                  <option  value="getAvgMenuItem">Average Price</option>
+                  <option  value="getRatingsForEach">Rating for Each</option>
+                  <option  value="getRestaurantRatingNotCondition">Rating for 2015</option>
+                  <option  value="getStaffRatingLowerThanRater">Low Staff Rating</option>
+                  <option  value="getHighRatedFoodbyRestaurantType">High Rated Food by Restaurant</option>
+                  <option  value="getHighestRater">Highest Rater</option>
+                  <option  value="getHighestRaterP2">Highest Rater P2</option>
+                  <option  value="getFrequentRater">Frequent Rater</option>
+                  <option  value="getRatingComparison">Compare Rating</option>
+                  <option  value="getDiverseRating">Compare Rating</option>
+                  <option  value="getCuisin">Cuisin</option>
+                </select>
+
+                <input  type="text" class="form-control"
+                name="searchbox"
+                required
+                #searchBox="ngModel"
+                [(ngModel)]="searchInput"
+                placeholder="Search for Collections!"
+                aria-label="Search" >
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+       
+        
+      </div>
+    </div>
+    
+
+          <div class="jumbotron row">
+              <h4 class="col-md-12 ">Restaurants</h4>
+              <div class="col-lg-3 col-md-4 col-sm-4 " *ngFor="let item of resultArray; let i = index" >
+                  <div class="card radius d-inline-block"   data-toggle="modal" data-target="#restaurantModal" *ngIf="i<8 || flag2">
+                      <img class=" radius card-img-top" width="200px" height="150px"
+                      (click)="onSelectRestaurant(restaurant)"
+                      
+                      src="https://source.unsplash.com/featured/?{{item.name}},food" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title title text-center">{{item.name}}</h5>
+                        <p class="container card-text small">
+                              <span *ngIf="item.name" class="small col-md-3">
+                                Name: 
+                              </span>
+                              <span *ngIf="item.name" class="col-md-3">
+                    
+                                {{item?.name}}
+                              </span>
+                              
+                              <span *ngIf="item.restaurantid" class="small col-md-3">
+                                RestaurantID: 
+                              </span>
+                              <span *ngIf="item.restaurantid" class="col-md-3">
+                    
+                                {{item?.restaurantid}}
+                              </span>
+                              
+                              <span *ngIf="item.type" class="small col-md-3">
+                                Type: 
+                              </span>
+                              <span *ngIf="item.type" class="col-md-3">
+                    
+                                {{item?.type}}
+                              </span>
+                              
+                              <span *ngIf="item?.hour_open" class="small col-md-3">
+                                Hour Open
+                              </span>
+                              <span *ngIf="item?.hour_open" class="col-md-3">
+                    
+                                : {{item?.hour_open}}
+                              </span>
+                              
+                              <span *ngIf="item?.close"class="small col-md-3">
+                                Hour Close
+                              </span>
+                              <span *ngIf="item?.hour_close"class="col-md-3">
+                    
+                                : {{item?.hour_close}}
+                              </span>
+                              
+                              <span *ngIf="item?.street_address" class="small col-md-3">
+                                Street Address
+                              </span>
+                              <span *ngIf="item?.street_address"class="col-md-3">
+                    
+                                : {{item?.street_address}}
+                              </span>
+                              
+                              <span *ngIf="item?.phone_number" class="small col-md-3">
+                                Phone Number
+                              </span>
+                              <span *ngIf="item?.phone_number" class="col-md-3">
+                    
+                                : {{item?.phone_number}}
+                              </span>
+                              
+                              <span *ngIf="item?.manager_name" class="small col-md-3">
+                                Manager Name
+                              </span>
+                              <span *ngIf="item?.manager_name" class="col-md-3">
+                    
+                                : {{item?.manager_name}}
+                              </span>
+                              
+                              <span *ngIf="item?.firstopen_date" class="small col-md-3">
+                                First Open 
+                              </span>
+                              <span *ngIf="item?.firstopen_date"class="col-md-3">
+                    
+                                Date: {{item?.firstopen_date }}
+                              </span>
+                              
+                              <span *ngIf="item?.price" class="small col-md-3">
+                                Price: 
+                              </span>
+                              <span *ngIf="item?.price" class="col-md-3">
+                    
+                                {{item.price}}
+                              </span>
+                              
+                              <span *ngIf="item?.average_price" class="small col-md-3">
+                                Average Price
+                              </span>
+                              <span *ngIf="item?.average_price" class="col-md-3">
+                    
+                                : {{item.average_price}}
+                              </span>
+                              
+                              <span *ngIf="item?.locationid"  class="small col-md-3">
+                                Location ID
+                              </span>
+                              <span *ngIf="item?.locationid" class="col-md-3">
+                    
+                                : {{item.locationid}}
+                              </span>
+                              
+                              <span *ngIf="item?.category" class="small col-md-3">
+                                Category: 
+                              </span>
+                              <span *ngIf="item?.category" class="col-md-3">
+                    
+                                {{item.category}}
+                              </span>
+                              
+                              <span *ngIf="item?.description" class="small col-md-3">
+                                Description: 
+                              </span>
+                              <span *ngIf="item?.description" class="col-md-3">
+                    
+                                {{item.description}}
+                              </span>
+                              
+                              <span *ngIf="item?.max_price"class="small col-md-3">
+                                Max Price
+                              </span>
+                              <span *ngIf="item?.max_price" class="col-md-3">
+                    
+                                : {{item.max_price}}
+                              </span>
+                              
+                              <span *ngIf="item?.average_rating"class="small col-md-3">
+                                Average Rating
+                              </span>
+                              <span *ngIf="item?.average_rating" class="col-md-3">
+                    
+                                : {{item.average_rating}}
+                              </span>
+                              
+                              <span *ngIf="item?.num_reviews"class="small col-md-3">
+                                Number Views
+                              </span>
+                              <span *ngIf="item?.num_reviews" class="col-md-3">
+                    
+                                : {{item.num_reviews}}
+                              </span>
+                              
+                              <span *ngIf="item?.total_reviews"class="small col-md-3">
+                                Total Reviews
+                              </span>
+                              <span *ngIf="item?.total_reviews"class="col-md-3">
+                    
+                                : {{item.total_reviews}}
+                              </span>
+                              
+                              <span *ngIf="item?.date"class="small col-md-3">
+                                Date: 
+                              </span>
+                              <span *ngIf="item?.date"class="col-md-3">
+                    
+                                {{item.date}}
+                              </span>
+                              
+                              <span *ngIf="item?.avg_food_mood" class="small col-md-3">
+                                Average Mood
+                              </span>
+                              <span *ngIf="item?.avg_food_mood" class="col-md-3">
+                    
+                                : {{item.avg_food_mood}}
+                              </span>
+                              
+                              <span *ngIf="item?.reputation" class="small col-md-3">
+                                Item Reputation
+                              </span>
+                              <span *ngIf="item?.reputation" class="col-md-3">
+                    
+                                : {{item.reputation}}
+                              </span>
+                              
+                              <span *ngIf="item?.mood" class="small col-md-3">
+                                Mood: 
+                              </span>
+                              <span *ngIf="item?.mood" class="col-md-3">
+                    
+                                {{item.mood}}
+                              </span>
+                              
+                              <span *ngIf="item?.food" class="small col-md-3">
+                                Food: 
+                              </span>
+                              <span *ngIf="item?.food" class="col-md-3">
+                    
+                                {{item.food}}
+                              </span>
+                              
+                              <span *ngIf="item?.comments" class="small col-md-3">
+                                Comments: 
+                              </span>
+                              <span *ngIf="item?.comments" class="col-md-3">
+                    
+                                {{item.comments}}
+                              </span>
+                              
+                              <span *ngIf="item?.email" class="small col-md-3">
+                                Email: 
+                              </span>
+                              <span *ngIf="item?.email" class="col-md-3">
+                    
+                                {{item.email}}
+                              </span>
+                              
+                              <span *ngIf="item?.rating_" class="small col-md-3">
+                                Rating_: 
+                              </span>
+                              <span *ngIf="item?.rating_" class="col-md-3">
+                    
+                                {{item.rating_}}
+                              </span>
+                              
+                              <span *ngIf="item?.staff" class="small col-md-3">
+                                Staff: 
+                              </span>
+                              <span *ngIf="item?.staff" class="col-md-3">
+                    
+                                {{item.staff}}
+                              </span>
+                        
+                        </p>
+                        <p class="card-text small"><small class="text-muted">{{item.url}}</small></p>
+                        <div class="container">
+            
+                          <div class="row">
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+          <div class="container">
+          
+            <a class="text-center" (click)="showAllRestaurant()">
+              <h1>...</h1>
+            </a>
+          </div>
+            </div>

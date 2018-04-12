@@ -28,6 +28,7 @@ import { DatapointService } from './services/datapoint.service';
 import { SpecialsComponent } from './main-components/specials/specials.component';
 import { AveragepriceComponent } from './main-components/averageprice/averageprice.component';
 import { UpdatedataComponent } from './main-components/updatedata/updatedata.component';
+import { CollectionComponent } from './main-components/collection/collection.component';
 // import { HttpClient } from '@angular/common/http';
 
 
@@ -44,7 +45,8 @@ import { UpdatedataComponent } from './main-components/updatedata/updatedata.com
     RatersComponent,
     SpecialsComponent,
     AveragepriceComponent,
-    UpdatedataComponent
+    UpdatedataComponent,
+    CollectionComponent
   ],
   imports: [
     FormsModule,
